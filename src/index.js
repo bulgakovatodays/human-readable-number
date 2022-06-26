@@ -292,7 +292,7 @@ else if (number < 999) {
       let a = (hundredRead + ' ' + dozenRead);
       return a.trim();
     } else if (unit !== 0 && (dozen + unit) >= 20) {      
-        let a = (hundredRead + ' ' + dozenRead + '-' + unitRead);
+        let a = (hundredRead + ' ' + dozenRead + ' ' + unitRead);
         return a.trim();
     }
   }
