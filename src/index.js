@@ -141,7 +141,7 @@ module.exports = function toReadable (number) {
         break; 
     }
     
-  if (unit = 0) {
+  if (unit === 0) {
       return dozenRead;
     } 
   else {
@@ -153,8 +153,41 @@ module.exports = function toReadable (number) {
 
 else if (number < 999) {
   let unit = number % 10;
-  let dozen = number - unit;
+  let dozen = (number - unit) % 100;
   let hundred = number - dozen - unit;
+
+  switch (dozen + unit) {
+    case 10:
+      dozen10and19 = 'ten';
+      break;
+    case 11:
+      dozen10and19 = 'eleven';
+      break;
+    case 12:
+      dozen10and19 = 'twelve';
+      break;
+    case 13:
+      dozen10and19 = 'thirteen';
+      break;
+    case 14:
+      dozen10and19 = 'fourteen';
+      break;
+    case 15:
+      dozen10and19 = 'fifteen';
+      break;
+    case 16:
+      dozen10and19 = 'sixteen';
+      break;
+    case 17:
+      dozen10and19 = 'seventeen';
+      break;
+    case 18:
+      dozen10and19 = 'eighteen';
+      break;
+    case 19:
+      dozen10and19 = 'nineteen';
+      break;
+    }
 
     switch (unit) {
       case 0: 
@@ -188,40 +221,7 @@ else if (number < 999) {
       unitRead = 'nine';
         break; 
     }
-
-    switch (number) {
-      case 10:
-        dozen10and19 = 'ten';
-        break;
-      case 11:
-        dozen10and19 = 'eleven';
-        break;
-      case 12:
-        dozen10and19 = 'twelve';
-        break;
-      case 13:
-        dozen10and19 = 'thirteen';
-        break;
-      case 14:
-        dozen10and19 = 'fourteen';
-        break;
-      case 15:
-        dozen10and19 = 'fifteen';
-        break;
-      case 16:
-        dozen10and19 = 'sixteen';
-        break;
-      case 17:
-        dozen10and19 = 'seventeen';
-        break;
-      case 18:
-        dozen10and19 = 'eighteen';
-        break;
-      case 19:
-        dozen10and19 = 'nineteen';
-        break;
-      }
-  
+    
   switch (dozen) {
     case 20: 
     dozenRead = 'twenty'; 
@@ -279,16 +279,16 @@ else if (number < 999) {
       break; 
   }
 
-  if (unit + dozen <20) {
-      return (hundred + ' ' + dozen10and19);
+  if ((dozen + unit) < 10) {
+    return (hundredRead + ' ' + unitRead);
+  }
+  else if ((dozen + unit) < 20) {
+      return (hundredRead + ' ' + dozen10and19);
     }
-    else if (unit == 0 && dozen >= 20) {
+    else if (unit === 0 && (dozen + unit) >= 20) {
       return (hundredRead + ' ' + dozenRead);
-    } else if (unit == 0 && dozen >= 20) {
+    } else if (unit !== 0 && (dozen + unit) >= 20) {
         return (hundredRead + ' ' + dozenRead + '-' + unitRead);
     }
   }
 }
-
-
-
