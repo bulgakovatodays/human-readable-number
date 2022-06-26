@@ -285,7 +285,8 @@ else if (number < 999) {
     return a.trim();
   }
   else if ((dozen + unit) < 20) {
-      return (hundredRead + ' ' + dozen10and19);
+    let a = (hundredRead + ' ' + dozen10and19);
+    return a.trim();
     }
     else if (unit === 0 && (dozen + unit) >= 20) {
       let a = (hundredRead + ' ' + dozenRead);
@@ -296,4 +297,3 @@ else if (number < 999) {
     }
   }
 }
-
