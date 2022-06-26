@@ -145,7 +145,8 @@ module.exports = function toReadable (number) {
       return dozenRead;
     } 
   else {
-    return (dozenRead + ' ' + unitRead);
+    let a = (dozenRead + ' ' + unitRead);
+    return a.trim();
     }
   }
 
@@ -269,7 +270,7 @@ else if (number < 999) {
     hundredRead = 'six hundred'; 
       break;
     case 700: 
-    unitRead = 'seven hundred';
+    hundredRead = 'seven hundred';
       break; 
     case 800: 
     hundredRead = 'eight hundred';
@@ -280,15 +281,19 @@ else if (number < 999) {
   }
 
   if ((dozen + unit) < 10) {
-    return (hundredRead + ' ' + unitRead);
+    let a = (hundredRead + ' ' + unitRead);
+    return a.trim();
   }
   else if ((dozen + unit) < 20) {
       return (hundredRead + ' ' + dozen10and19);
     }
     else if (unit === 0 && (dozen + unit) >= 20) {
-      return (hundredRead + ' ' + dozenRead);
-    } else if (unit !== 0 && (dozen + unit) >= 20) {
-        return (hundredRead + ' ' + dozenRead + '-' + unitRead);
+      let a = (hundredRead + ' ' + dozenRead);
+      return a.trim();
+    } else if (unit !== 0 && (dozen + unit) >= 20) {      
+        let a = (hundredRead + ' ' + dozenRead + '-' + unitRead);
+        return a.trim();
     }
   }
 }
+
