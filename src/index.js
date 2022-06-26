@@ -145,7 +145,7 @@ module.exports = function toReadable (number) {
       return dozenRead;
     } 
   else {
-    return (dozenRead + '-' + unitRead);
+    return (dozenRead + ' ' + unitRead);
     }
   }
 
